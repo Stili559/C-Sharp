@@ -1,0 +1,20 @@
+using System;
+using System.Linq;
+using System.Text;
+
+namespace Substring
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {  
+            string remove = Console.ReadLine();
+            StringBuilder remove1 = new StringBuilder(Console.ReadLine());
+            while (remove1.ToString().Contains(remove))
+            {
+                remove1.Replace(remove.ToLower(), "");
+            }
+            Console.WriteLine(remove1);
+        }
+    }
+}
