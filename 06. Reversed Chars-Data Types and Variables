@@ -1,0 +1,26 @@
+using System;
+
+namespace Reversed Chars
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            char letter = char.Parse(Console.ReadLine());
+            char letter1 = char.Parse(Console.ReadLine());
+            char letter2 = char.Parse(Console.ReadLine());
+
+            ReversedChars(letter, letter1, letter2);
+        }
+
+        static char ReversedChars(char letter, char letter1, char letter2)
+        {
+            char a = ' ';
+
+            Console.WriteLine($"{letter2} {letter1} {letter}");
+
+            return a;
+
+        }
+    }
+}
