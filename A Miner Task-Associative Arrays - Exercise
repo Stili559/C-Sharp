@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace A Miner Task
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dictionary<string, int> resources = new Dictionary<string, int>();
+            string input = Console.ReadLine();
+
+            while (input != "stop")
+            {
+                if(resources.ContainsKey(input) == false)
+                {
+                    resources.Add(input, 0);
+                }
+                int br = int.Parse(Console.ReadLine());
+                resources[input] += br;
+                input = Console.ReadLine();
+            }
+            foreach (var resource in resources)
+            {
+                Console.WriteLine($"{resource.Key} -> {resource.Value}");
+            }
+        }
+    }
+}
