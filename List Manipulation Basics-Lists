@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ConsoleApp21
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> numbers = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+
+            while (true)
+            {
+                string line = Console.ReadLine();
+
+                if(line == "end")
+                {
+                    break;
+                }
+
+                string[] token = line.Split();
+                switch (token[0]) 
+                {
+                    case "Add":
+                        int number1 = int.Parse(token[1]);
+                        numbers.Add(number1);
+                        break;
+                    case "Remove":
+                        int number2 = int.Parse(token[1]);
+                        numbers.Remove(number2);
+                        break;
+                    case "RemoveAt":
+                        int number3 = int.Parse(token[1]);
+                        numbers.RemoveAt(number3);
+                        break;
+                    case "Insert":
+                        int number4 = int.Parse(token[1]);
+                        int number5 = int.Parse(token[2]);
+                        numbers.Insert(number5, number4);
+                        break;
+                }       
+            }
+            Console.WriteLine(string.Join(" ", numbers));
+        }   
+    }
+}
