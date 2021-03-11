@@ -1,0 +1,21 @@
+using System;
+
+namespace Town info
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string city = Console.ReadLine();
+           int population = int.Parse(Console.ReadLine());
+            int km = int.Parse(Console.ReadLine());
+            ConcatNames(city, population, km);
+        }
+
+        static void ConcatNames(string city, int population, int km)
+        {
+
+            Console.WriteLine("Town " +  city +  " has population of " + population + " and area " + km + " square km.");
+        }
+    }
+}
