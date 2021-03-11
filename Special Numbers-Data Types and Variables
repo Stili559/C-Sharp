@@ -1,0 +1,39 @@
+using System;
+
+namespace Special Numbers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int num = int.Parse(Console.ReadLine());
+
+            SpecialNumbers(num);
+        }
+
+        static void SpecialNumbers(int num)
+        {
+           
+            for (int i = 1; i <= num; i++)
+            {
+                int Sum = 0;
+                int currennum = i;
+                while (currennum != 0)
+                {
+                    Sum += currennum % 10;
+                    currennum = currennum / 10;
+                }
+
+                if (Sum == 5 || Sum == 7 || Sum == 11)
+                {
+                    Console.WriteLine($"{i} -> True");
+                }
+                else
+                {
+                    Console.WriteLine($"{i} -> False");
+                }
+               
+            }           
+        }
+    }
+}
