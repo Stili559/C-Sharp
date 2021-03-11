@@ -1,0 +1,24 @@
+using System;
+using System.Linq;
+
+namespace Recursive Fibonacci
+{
+    class Program
+    {
+        static void Main()
+        {
+            int Fibonacci = int.Parse(Console.ReadLine());
+            int[] fibonacci = new int[50];
+
+            fibonacci[0] = 1;
+            fibonacci[1] = 1;
+                
+                for (int i = 2; i < Fibonacci; i++)
+                {
+                    fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
+                }
+            
+            Console.WriteLine(fibonacci[Fibonacci - 1]);
+        }
+    }
+}
