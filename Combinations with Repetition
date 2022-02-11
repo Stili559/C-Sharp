@@ -24,7 +24,7 @@ namespace CombinationswithRepetition
             for (int i = num; i <= n; i++)
             {             
                  array[index] = i;
-                 GenerateCombinations(array, index + 1,n , i+1);                
+                 GenerateCombinations(array, index + 1,n , i);                
             }
         }          
     }
