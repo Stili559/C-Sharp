@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Queens
+{
+    class Program
+    {
+        const int Size = 8;
+        static int[,] matrix = new int[Size, Size];
+
+        static HashSet<int> attackRows = new HashSet<int>();
+        static HashSet<int> attackCols = new HashSet<int>();
+        static HashSet<int> attackLeft = new HashSet<int>();
+        static HashSet<int> attackRight = new HashSet<int>();
+        public static void Main(string[] args)
+        {        
+            Place(0);
+        }
+        private static void Place(int row)
+        {
+            if (row == Size)
+            {
+                Print();
+            }
+            for (int col = 0; col < Size; col++)
+            {
+                if (CanPlace(row, col))
+                {
+                    Mark(row, col);
+                    Place(row + 1);
+                    UnMark(row, col);
+                }
+            }
+        }
+        private static void UnMark(int row, int col)
+        {
+            matrix[row, col] = 0;
+            attackRows.Remove(row);
+            attackCols.Remove(col);
+            attackLeft.Remove(col - row);
+            attackRight.Remove(row + col);
+        }
+        private static void Mark(int row, int col)
+        {
+            matrix[row, col] = 1;
+            attackRows.Add(row);
+            attackCols.Add(col);
+            attackLeft.Add(col - row);
+            attackRight.Add(row + col);
+        }    
+        private static bool CanPlace(int row, int col)
+        {
+            bool isNotFreePosition = attackRows.Contains(row)
+            || attackCols.Contains(col)
+            || attackLeft.Contains(col - row)
+            || attackRight.Contains(col + row);
+
+            return !isNotFreePosition;
+        }
+
+        private static void Print()
+            {
+            for (int row = 0; row < Size; row++)
+            {
+                for (int col = 0; col < Size; col++)
+                {
+                    if (matrix[row, col] == 1)
+                    {
+                        Console.Write("* ");
+                    }
+                    else
+                    {
+                        Console.Write("- ");
+                    }
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+    }
+}
