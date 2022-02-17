@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Articles2
+{
+    class Article
+    {
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public string Author { get; set; }
+
+        public Article(string title, string content, string autor)
+        {
+            Title = title;
+            Content = content;
+            Author = autor;
+        }
+
+        public override string ToString()
+        {
+            return $"{Title} - {Content}: {Author}";
+        }
+    }
+    class Program
+    {
+        static void Main()
+        {
+            int count = int.Parse(Console.ReadLine());
+            List<Article> articles = new List<Article>();
+            string[] command;
+
+            for (int i = 0; i < count; i++)
+            {
+                command = Console.ReadLine().Split(", ");
+                var article = new Article(command[0], command[1], command[2]);
+                articles.Add(article);
+            }
+
+            string All = Console.ReadLine();
+            switch (All)
+            {
+                case "title":
+                    articles = articles.OrderBy(X => X.Title).ToList();
+                    break;
+
+                case "content":
+                    articles = articles.OrderBy(X => X.Content).ToList();
+                    break;
+
+                case "author":
+                    articles = articles.OrderBy(X => X.Author).ToList();
+                    break;
+            }
+            Console.WriteLine(string.Join(Environment.NewLine, articles));
+        }
+    }
+
+
+}

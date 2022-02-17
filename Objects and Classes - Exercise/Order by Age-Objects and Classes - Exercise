@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Order by Age
+{
+    public class ClassandObject
+    {
+        public class Student
+        {
+            public string FirstName { get; set; }
+            public string ID { get; set; }
+            public int Age { get; set; }
+        }
+
+
+
+            class Program
+            {
+                static void Main(string[] args)
+                {
+                    List<string> line = Console.ReadLine()
+                        .Split(" ")
+                        .ToList();
+                    List<Student> save = new List<Student>();
+
+
+                    while (line[0] != "End")
+                    {
+                        string firstname = line[0].ToString();
+                        string id = line[1].ToString();
+                        int age = int.Parse(line[2]);
+
+                        Student person = new Student
+                        {
+                            FirstName = firstname,
+                            ID = id,
+                            Age = age
+
+                        };
+
+                        save.Add(person);
+                        line = Console.ReadLine().Split().ToList();
+
+                    }
+                   
+                         save = save.OrderBy(person => person.Age).ToList();
+
+                        foreach (var all in save)
+                        {
+                            Console.WriteLine($"{all.FirstName} with ID: {all.ID} is {all.Age} years old.");
+                        }
+                    
+                }
+            }
+        
+    }
+}

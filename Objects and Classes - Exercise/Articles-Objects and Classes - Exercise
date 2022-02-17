@@ -1,0 +1,52 @@
+using System;
+using System.Linq;
+
+namespace Articles
+{
+    public class Program
+    {
+        public class Article
+        {
+            public string Title { get; set; }
+            public string Content { get; set; }
+            public string Author { get; set; }
+        }
+        public static void Main()
+        {
+            var Text = Console.ReadLine()
+                .Split(", ")
+                .ToList();
+
+            int num = int.Parse(Console.ReadLine());
+
+            var all = new Article
+            {
+                Title = Text[0],
+                Content = Text[1],
+                Author = Text[2]
+            };
+
+            for (int i = 0; i < num; i++)
+            {
+                var New = Console.ReadLine()
+                    .Split(':')
+                    .Select(s => s.Trim())
+                    .ToList();
+
+                if (New[0] == "Edit")
+                {
+                    all.Content = New[1];
+                }
+                else if (New[0] == "ChangeAuthor")
+                {
+                    all.Author = New[1];
+                }
+                else if (New[0] == "Rename")
+                {
+                    all.Title = New[1];
+                }
+            }
+            Console.WriteLine($"{all.Title} - {all.Content}: {all.Author}");
+        }
+    }
+}
