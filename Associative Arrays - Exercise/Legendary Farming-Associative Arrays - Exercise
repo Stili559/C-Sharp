@@ -1,0 +1,79 @@
+namespace LegendaryFarming
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    class Program
+    {
+        static void Main()
+        {
+
+            Dictionary<string, int> Item = new Dictionary<string, int>();
+            Dictionary<string, int> Trash = new Dictionary<string, int>();
+
+            Item["shards"] = 0;
+            Item["fragments"] = 0;
+            Item["motes"] = 0;
+
+            bool end = true;
+
+            while (end)
+            {
+                string[] Materials = Console.ReadLine()
+                    .ToLower()
+                    .Split(" ");
+
+                for (int i = 0; i < Materials.Length; i += 2)
+                {
+                    int all = int.Parse(Materials[i]);
+                    string materials = Materials[i + 1];
+
+                    if (Item.ContainsKey(materials))    
+                    {
+                        Item[materials] = Item[materials] + all;
+
+                        if (Item[materials] >= 250)
+                        {
+                            switch (materials)
+                            {
+                                case "shards":
+                                    Console.WriteLine("Shadowmourne obtained!");
+                                    break;
+                                case "fragments":
+                                    Console.WriteLine("Valanyr obtained!");
+                                    break;
+                                case "motes":
+                                    Console.WriteLine("Dragonwrath obtained!");
+                                    break;
+                            }
+                            Item[materials] = Item[materials] - 250;
+                            end = false;
+                            break;      
+                        }
+                    }
+                    else                
+                    {
+                        if (!Trash.ContainsKey(materials))
+                            Trash.Add(materials, 0);
+
+                        Trash[materials] = Trash[materials] + all;
+                    }
+                }
+            }
+            Item = Item
+                .OrderByDescending(x => x.Value)
+                .ThenBy(x => x.Key)
+                .ToDictionary(x => x.Key, x => x.Value);
+
+            foreach (var item in Item)
+                Console.WriteLine($"{item.Key}: {item.Value}");
+
+            Trash = Trash
+                .OrderBy(x => x.Key)
+                .ToDictionary(x => x.Key, x => x.Value);
+
+            foreach (var item in Trash)
+                Console.WriteLine($"{item.Key}: {item.Value}");
+        }
+    }
+}
