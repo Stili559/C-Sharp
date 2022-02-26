@@ -1,0 +1,26 @@
+using System;
+using System.Linq;
+
+namespace ReverseArray
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] array = Console.ReadLine()               		
+              .Split()
+              .Select(int.Parse)
+              .ToArray();
+          
+            ReverseArray(array, array.Length - 1);
+        }
+
+        private static void ReverseArray(int[] array, int num)
+        {
+            if (num < 0) { return; }
+            Console.Write(array[num] + " ");
+            ReverseArray(array, num - 1);
+
+        }
+    }
+}
