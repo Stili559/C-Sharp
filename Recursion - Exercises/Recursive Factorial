@@ -1,0 +1,27 @@
+using System;
+using System.Linq;
+
+namespace RecursiveFactorial
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            long num = long.Parse(Console.ReadLine());
+
+            long n = Factorial(num);
+
+            Console.WriteLine(n);
+        }
+
+        static long Factorial(long n)
+        {
+            if (n == 1)
+            {
+                return 1;
+            }
+                long sum = n;
+                return sum * Factorial(n - 1);               
+            }
+        }
+    }
